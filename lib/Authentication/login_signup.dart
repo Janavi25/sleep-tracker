@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sleep_tracker/Intro_screens/create_profile.dart';
+import 'package:sleep_tracker/controller/constants.dart';
 import 'package:sleep_tracker/helpers/screen_navigation.dart';
 import 'package:sleep_tracker/home/home.dart';
 
@@ -106,7 +107,7 @@ class _login_signupState extends State<login_signup> {
                   ),
                   InkWell(
                     onTap: (() {
-                      changeScreen(context, create_profile());
+                      authController.signInWithGoogle();
                     }),
                     child: Container(
                       height: 6.5.h,

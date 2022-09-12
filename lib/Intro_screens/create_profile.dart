@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sleep_tracker/controller/constants.dart';
+import 'package:sleep_tracker/controller/user.dart';
+
+import '../model/usermodel.dart';
 
 class create_profile extends StatefulWidget {
   // const create_profile({ Key? key }) : super(key: key);
@@ -14,6 +18,7 @@ class create_profile extends StatefulWidget {
 class _create_profileState extends State<create_profile> {
   @override
   Widget build(BuildContext context) {
+    final uss = UserServices.instance;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -101,7 +106,7 @@ class _create_profileState extends State<create_profile> {
                             color: Color(0xff111422),
                           ),
                           child: Image(
-                            image: const AssetImage('assets/avatar.png'),
+                            image: NetworkImage(uss.userr.image),
                             height: 2.h,
                           ),
                         ),
@@ -137,14 +142,19 @@ class _create_profileState extends State<create_profile> {
             SizedBox(
               height: 1.h,
             ),
-            Text(
-              'upload an image',
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  color: const Color.fromARGB(255, 85, 62, 199),
-                  fontSize: 14.5.sp,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 0.2,
+            InkWell(
+              onTap: () {
+                authController.signOut();
+              },
+              child: Text(
+                'upload an image',
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    color: const Color.fromARGB(255, 85, 62, 199),
+                    fontSize: 14.5.sp,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.2,
+                  ),
                 ),
               ),
             )
