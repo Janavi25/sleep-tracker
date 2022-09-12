@@ -12,21 +12,21 @@ class UserServices extends GetxController {
   static UserServices instance = Get.find();
   String collection = "users";
 
-  late UserModel userr;
+  UserModel? userr;
   String UID = "";
   String phone = "";
   bool loading = false;
 
   late Stream userstream;
-  UserModel get user => userr;
+  UserModel get user => userr!;
   UserServices() {
     getUser();
     getUser1();
+    update();
     // getpincode();
   }
 
   Future<void> getUser() async {
-    Fluttertoast.showToast(msg: "usermila");
     final User currentUser = auth.currentUser!;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getBool("loggedIn") ?? false) {
@@ -38,7 +38,6 @@ class UserServices extends GetxController {
   }
 
   Future<void> getUser1() async {
-    Fluttertoast.showToast(msg: "usermila");
     final User currentUser = auth.currentUser!;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getBool("loggedIn") ?? false) {
