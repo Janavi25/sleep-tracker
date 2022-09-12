@@ -22,6 +22,8 @@ dependencies:
   google_fonts:
   cached_network_image:
   shimmer:
+  flutter_foreground_plugin: 
+  flutter_launcher_icons: 
 
 dev_dependencies:
   flutter_test:
@@ -36,6 +38,9 @@ flutter:
   assets:
     - assets/
   #   - images/a_dot_ham.jpeg
+
+
+  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -62,3 +67,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon.png"
