@@ -24,6 +24,32 @@ dependencies:
   shimmer:
   flutter_foreground_plugin: 
   flutter_launcher_icons: 
+  dio:
+  shared_preferences:
+  path_provider:
+  firebase_auth: 
+  firebase_storage :
+  firebase_core:
+  google_sign_in:
+  cloud_firestore: 
+  fluttertoast:
+  permission_handler:
+  get:
+
+
+
+# dependency_overrides:
+#   firebase_messaging_platform_interface: 3.1.6
+#   firebase_crashlytics_platform_interface: 3.1.13
+#   cloud_firestore_platform_interface: 5.4.13
+#   firebase_auth_platform_interface: 6.1.11
+#   firebase_storage_platform_interface: 4.0.14
+#   cloud_functions_platform_interface: 5.0.21
+#   firebase_analytics_platform_interface: 3.0.5
+#   firebase_remote_config_platform_interface: 1.0.5
+#   firebase_dynamic_links_platform_interface: 0.2.0+5
+#   firebase_performance_platform_interface: 0.1.0+5
+#   firebase_app_installations_platform_interface: 0.1.0+6
 
 dev_dependencies:
   flutter_test:
