@@ -8,7 +8,7 @@ void changeScreen(BuildContext context, Widget widget) {
     PageTransition(
       child: widget,
       type: PageTransitionType.fade,
-      duration: const Duration(milliseconds: 280),
+      duration: const Duration(milliseconds: 300),
     ),
   );
 }
@@ -22,7 +22,7 @@ void changeScreenReplacement(BuildContext context, Widget widget) {
       PageTransition(
         child: widget,
         type: PageTransitionType.fade,
-        duration: const Duration(milliseconds: 280),
+        duration: const Duration(milliseconds: 300),
       ));
 }
 
@@ -34,7 +34,7 @@ void nohistorychangescreen(BuildContext context, Widget widget) {
       PageTransition(
         child: widget,
         type: PageTransitionType.fade,
-        duration: const Duration(milliseconds: 280),
+        duration: const Duration(milliseconds: 300),
       ),
       (_) => false);
 }

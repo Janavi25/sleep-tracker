@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sleep_tracker/home/home.dart';
+import 'package:intl/intl.dart';
+import '../helpers/screen_navigation.dart';
 
 class create_profile extends StatefulWidget {
   // const create_profile({ Key? key }) : super(key: key);
@@ -12,6 +15,13 @@ class create_profile extends StatefulWidget {
 }
 
 class _create_profileState extends State<create_profile> {
+  var selectedDate;
+  TextEditingController dobController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,8 +157,208 @@ class _create_profileState extends State<create_profile> {
                   letterSpacing: 0.2,
                 ),
               ),
-            )
+            ),
+            SizedBox(
+              height: 4.h,
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+              ),
+              decoration: const BoxDecoration(
+                color: Color(0xff111422),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15),
+                ),
+              ),
+              child: TextFormField(
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16.sp,
+                ),
+                decoration: InputDecoration(
+                  border: const UnderlineInputBorder(),
+                  labelText: 'Full name',
+                  labelStyle: TextStyle(
+                    color: Colors.grey[500],
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15.sp,
+                  ),
+                  isCollapsed: true,
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 16,
+                  ),
+                  prefixIcon: Icon(
+                    Icons.person_outline_rounded,
+                    size: 20.sp,
+                    color: Colors.white,
+                  ),
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  disabledBorder: InputBorder.none,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+              ),
+              decoration: const BoxDecoration(
+                color: Color(0xff111422),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15),
+                ),
+              ),
+              child: TextFormField(
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16.sp,
+                ),
+                decoration: InputDecoration(
+                  border: const UnderlineInputBorder(),
+                  labelText: 'Gender',
+                  labelStyle: TextStyle(
+                    color: Colors.grey[500],
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15.sp,
+                  ),
+                  isCollapsed: true,
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 16,
+                  ),
+                  prefixIcon: Icon(
+                    Icons.female,
+                    size: 20.sp,
+                    color: Colors.white,
+                  ),
+                  floatingLabelBehavior: FloatingLabelBehavior.never,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  disabledBorder: InputBorder.none,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            InkWell(
+              onTap: () {
+                showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1950),
+                  lastDate: DateTime.now(),
+                ).then((pickedDate) {
+                  if (pickedDate == null) {
+                    return;
+                  }
+                  setState(() {
+                    selectedDate = pickedDate;
+                  });
+                });
+              },
+              child: Container(
+                  height: 6.h,
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 25,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Color(0xff111422),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.calendar_month_rounded,
+                        size: 19.sp,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 4.w,
+                      ),
+                      selectedDate == null
+                          ? Text(
+                              'Date of birth',
+                              style: TextStyle(
+                                color: Colors.grey[500],
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15.sp,
+                              ),
+                            )
+                          : Text(
+                              DateFormat.yMMMd().format(selectedDate),
+                              style: TextStyle(
+                                color: Colors.grey[500],
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15.sp,
+                              ),
+                            ),
+                    ],
+                  )),
+            ),
           ],
+        ),
+      ),
+      bottomNavigationBar: GestureDetector(
+        onTap: (() {
+          changeScreen(context, home());
+        }),
+        child: Container(
+          height: 5.5.h,
+          width: 100.w,
+          margin: EdgeInsets.only(
+            left: 25,
+            right: 25,
+            bottom: 5.h,
+            top: 20,
+          ),
+          decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 85, 62, 199),
+              borderRadius: BorderRadius.all(
+                Radius.circular(15),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  // offset: Offset(0.5, 1),
+                  spreadRadius: 1,
+                  blurRadius: 1,
+                  color: Color.fromARGB(255, 15, 19, 35),
+                )
+              ]),
+          child: Center(
+            child: Text(
+              'Continue',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );

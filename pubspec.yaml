@@ -22,6 +22,8 @@ dependencies:
   google_fonts:
   cached_network_image:
   shimmer:
+  platform_date_picker: ^0.2.0-nullsafety.0+1
+  intl:
 
 dev_dependencies:
   flutter_test:

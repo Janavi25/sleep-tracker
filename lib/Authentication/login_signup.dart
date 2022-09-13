@@ -54,7 +54,7 @@ class _login_signupState extends State<login_signup> {
                       height: 1.h,
                     ),
                     Text(
-                      'Appname!',
+                      'Hello, Sleep!',
                       style: GoogleFonts.trirong(
                         textStyle: TextStyle(
                           color: Colors.white,
@@ -74,15 +74,31 @@ class _login_signupState extends State<login_signup> {
               ),
               child: Column(
                 children: [
-                  Text(
-                    'Welcome to Appname!',
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        color: Colors.white,
-                        letterSpacing: 0.5,
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w500,
+                  RichText(
+                    softWrap: true,
+                    text: TextSpan(
+                      text: 'Welcome to',
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                          color: Colors.white,
+                          letterSpacing: 0.5,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: ' Hello, Sleep!',
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                              color: const Color.fromARGB(255, 85, 62, 199),
+                              letterSpacing: 0.5,
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
@@ -104,7 +120,7 @@ class _login_signupState extends State<login_signup> {
                       ),
                     ),
                   ),
-                  InkWell(
+                  GestureDetector(
                     onTap: (() {
                       changeScreen(context, create_profile());
                     }),
