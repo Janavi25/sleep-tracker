@@ -23,6 +23,7 @@ import 'package:provider/provider.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sleep_tracker/Authentication/splash/splash.dart';
 import 'package:sleep_tracker/Intro_screens/create_profile.dart';
+import 'package:sleep_tracker/Navigation/Navigation.dart';
 import 'package:sleep_tracker/controller/user.dart';
 import 'package:sleep_tracker/home/home.dart';
 
@@ -513,7 +514,7 @@ class AuthProviderl with ChangeNotifier {
         });
       });
       Navigator.pushAndRemoveUntil(context,
-          MaterialPageRoute(builder: (context) => home()), (_) => false);
+          MaterialPageRoute(builder: (context) => Navigation()), (_) => false);
     }
   }
 
@@ -530,11 +531,9 @@ class AuthProviderl with ChangeNotifier {
 
       final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
 
-      // Obtain the auth details from the request
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
 
-      // Create a new credential
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
@@ -983,7 +982,7 @@ class AuthProviderl with ChangeNotifier {
         }
       });
       Navigator.pushAndRemoveUntil(context,
-          MaterialPageRoute(builder: (context) => home()), (_) => false);
+          MaterialPageRoute(builder: (context) => Navigation()), (_) => false);
     } catch (e) {
       loading = false;
       // Fluttertoast.showToast(msg: 'Error, Please check Yor Internet', backgroundColor: Colors.grey, textColor: Colors.black);

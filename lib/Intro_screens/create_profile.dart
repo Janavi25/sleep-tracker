@@ -5,6 +5,7 @@ import 'package:progressive_time_picker/progressive_time_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:sleep_tracker/Navigation/Navigation.dart';
 import 'package:sleep_tracker/home/home.dart';
 import 'package:intl/intl.dart' as intl;
 import '../controller/user.dart';
@@ -87,7 +88,7 @@ class _create_profileState extends State<create_profile> {
                     borderRadius: BorderRadius.circular(100),
                   ),
                   onTap: () {
-                    changeScreen(context, home());
+                    changeScreen(context, Navigation());
                   },
                   child: Container(
                     decoration: const BoxDecoration(
@@ -470,7 +471,7 @@ class _create_profileState extends State<create_profile> {
                             _isSleepGoal
                                 ? "Sleep Goal Is Optimal 😄"
                                 : 'You Need to Sleep More 😴',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -489,7 +490,7 @@ class _create_profileState extends State<create_profile> {
                             _timeWidget(
                               'BedTime',
                               _inBedTime,
-                              Icon(
+                              const Icon(
                                 Icons.bed_rounded,
                                 size: 25.0,
                                 color: Color(0xFF3CDAF7),
@@ -549,7 +550,7 @@ class _create_profileState extends State<create_profile> {
                         minute: _outBedTime.m.toInt())),
                     "sleepgoal": sleepHours,
                   });
-                  changeScreen(context, home());
+                  changeScreen(context, Navigation());
                 } else {
                   _userService.updateUser({
                     "dob": selectedDate,
@@ -568,7 +569,7 @@ class _create_profileState extends State<create_profile> {
                   top: 20,
                 ),
                 decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 85, 62, 199),
+                    color: Color(0xFF3CDAF7),
                     borderRadius: BorderRadius.all(
                       Radius.circular(15),
                     ),
@@ -586,9 +587,9 @@ class _create_profileState extends State<create_profile> {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                       textStyle: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 16.sp,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -612,7 +613,7 @@ class _create_profileState extends State<create_profile> {
           children: [
             Text(
               '${intl.NumberFormat('00').format(time.h)}:${intl.NumberFormat('00').format(time.m)}',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xFF3CDAF7),
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -621,7 +622,7 @@ class _create_profileState extends State<create_profile> {
             SizedBox(height: 15),
             Text(
               '$title',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xFF3CDAF7),
                 fontSize: 16,
               ),
