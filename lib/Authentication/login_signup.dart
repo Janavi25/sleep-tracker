@@ -95,7 +95,7 @@ class _login_signupState extends State<login_signup> {
                           text: ' Hello, Sleep!',
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
-                              color: const Color.fromARGB(255, 85, 62, 199),
+                              color: Color(0xFF3CDAF7),
                               letterSpacing: 0.5,
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w500,
@@ -137,7 +137,7 @@ class _login_signupState extends State<login_signup> {
                         top: 20,
                       ),
                       decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 85, 62, 199),
+                          color: Color(0xFF3CDAF7),
                           borderRadius: BorderRadius.all(
                             Radius.circular(18),
                           ),

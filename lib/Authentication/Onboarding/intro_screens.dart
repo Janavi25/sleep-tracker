@@ -196,7 +196,7 @@ class _Intro_ScreensState extends State<Intro_Screens> {
         next: Container(
           padding: const EdgeInsets.all(15),
           decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 85, 62, 199),
+            color: Color(0xFF3CDAF7),
             shape: BoxShape.circle,
           ),
           child: const Icon(
@@ -208,7 +208,7 @@ class _Intro_ScreensState extends State<Intro_Screens> {
         done: Container(
           padding: const EdgeInsets.all(15),
           decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 85, 62, 199),
+            color: Color(0xFF3CDAF7),
             shape: BoxShape.circle,
           ),
           child: const Icon(
@@ -221,7 +221,7 @@ class _Intro_ScreensState extends State<Intro_Screens> {
         controlsMargin: const EdgeInsets.all(16),
         controlsPadding: const EdgeInsets.all(12.0),
         dotsDecorator: const DotsDecorator(
-          activeColor: Color.fromARGB(255, 85, 62, 199),
+          activeColor: Color(0xFF3CDAF7),
           size: Size(5.0, 5.0),
           color: Color(0xFFBDBDBD),
           activeSize: Size(10.0, 10.0),

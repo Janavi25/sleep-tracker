@@ -42,11 +42,13 @@ dependencies:
 
   flutter_launcher_icons:
   progressive_time_picker:
+  flutter_switch:
   dio:
   shared_preferences:
   path_provider:
   firebase_storage:
   permission_handler: ^9.0.2
+  sliding_up_panel:
   water_drop_nav_bar:
   font_awesome_flutter:
 
