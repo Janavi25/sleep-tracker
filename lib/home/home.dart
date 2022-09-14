@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sleep_tracker/Intro_screens/create_profile.dart';
+import 'package:sleep_tracker/controller/user.dart';
 import 'package:sleep_tracker/helpers/screen_navigation.dart';
+
+import '../controller/utils.dart';
 
 class home extends StatefulWidget {
   // const home({Key? key}) : super(key: key);
@@ -13,6 +17,7 @@ class home extends StatefulWidget {
 class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
+    final uss = Provider.of<UserServices>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xff0A0C16),
@@ -29,7 +34,7 @@ class _homeState extends State<home> {
                   horizontal: 20,
                 ),
                 child: Text(
-                  "Good Evening",
+                  "${greetings(DateTime.now())}",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20.sp,
@@ -41,7 +46,7 @@ class _homeState extends State<home> {
                   horizontal: 20,
                 ),
                 child: Text(
-                  "Saurabh",
+                  '${uss.user.name}',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20.sp,

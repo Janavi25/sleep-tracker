@@ -35,6 +35,7 @@ class _create_profileState extends State<create_profile> {
   PickedTime _inBedTime = PickedTime(h: 0, m: 0);
   PickedTime _outBedTime = PickedTime(h: 8, m: 0);
   PickedTime _intervalBedTime = PickedTime(h: 0, m: 0);
+  bool genderdone = false;
 
   double _sleepGoal = 8.0;
   bool _isSleepGoal = false;
@@ -116,7 +117,7 @@ class _create_profileState extends State<create_profile> {
                     )),
               ),
             ),
-            body: uss.user.gender == null || uss.user.gender == ""
+            body: genderdone == false
                 ? Column(
                     children: [
                       SizedBox(
@@ -512,7 +513,7 @@ class _create_profileState extends State<create_profile> {
                   ),
             bottomNavigationBar: GestureDetector(
               onTap: (() {
-                if (uss.user.gender != null) {
+                if (genderdone == true) {
                   var clockTimeDivision = getClockTimeFormatDivision(
                     _clockTimeFormat,
                     _clockIncrementTimeFormat,
@@ -556,6 +557,10 @@ class _create_profileState extends State<create_profile> {
                     "dob": selectedDate,
                     "name": name.text,
                     "gender": gender.text,
+                  });
+                  setState(() {
+                    genderdone =
+                        uss.user.gender != null || uss.user.gender != "";
                   });
                 }
               }),

@@ -24,10 +24,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sleep_tracker/Authentication/splash/splash.dart';
 import 'package:sleep_tracker/Intro_screens/create_profile.dart';
 import 'package:sleep_tracker/Navigation/Navigation.dart';
+import 'package:sleep_tracker/controller/constants.dart';
 import 'package:sleep_tracker/controller/user.dart';
-import 'package:sleep_tracker/home/home.dart';
 
-import '../helpers/screen_navigation.dart';
 import '../model/usermodel.dart';
 import 'appprovider.dart';
 
@@ -422,25 +421,12 @@ class AuthProviderl with ChangeNotifier {
     _userServicse.createUser({
       "id": id,
       "number": number ?? '',
-      "name": '',
-      "age": 0,
-      "address": '',
-      "deviceid": currentDevice,
-      "adbook": [],
-      "image": "",
-      "email": email ?? '',
-      "sharelink": "",
-      "cart": cart,
-      "favourite": fav,
-      "code": "",
-      "ridername": "",
-      "favshop": favshop,
+      "name": auth.currentUser.displayName,
 
-      "order": [],
-      // "activeorder": [],
-      "wallet": 0,
-      // "passbook": [],
-      "purchase": 0,
+      "deviceid": currentDevice,
+      "gender": "",
+      "image": auth.currentUser.photoURL,
+      "email": email ?? '',
 
       // "notification": [],
     });
@@ -472,22 +458,13 @@ class AuthProviderl with ChangeNotifier {
         ? _userServicse.createUser({
             "id": id,
             "number": number ?? '',
-            "name": /*name??'',*/ '',
-            "age": 0,
-            "address": '',
-            "adbook": [],
-            "image": /*image??*/ '',
-            "email": email ?? '',
-            "cart": [],
-            "favourite": [],
-            "favshop": [],
+            "name": auth.currentUser.displayName,
+
             "deviceid": currentDevice,
-            "order": [],
-            "wallet": 0,
-            "purchase": 0,
-            "code": "",
-            "ridername": "",
-            "sharelink": "",
+            "gender": "",
+            "image": auth.currentUser.photoURL,
+            "email": email ?? '',
+
             // "notification": [],
           })
         : null;
@@ -495,7 +472,7 @@ class AuthProviderl with ChangeNotifier {
 
   signinFLOW(BuildContext context) async {
     Future.delayed(Duration(seconds: 2));
-    if (_userModel.gender.isEmpty) {
+    if (_userModel.gender == null || _userModel.gender == "") {
 // Here you can write your code
       Navigator.pushAndRemoveUntil(
           context,
@@ -940,7 +917,7 @@ class AuthProviderl with ChangeNotifier {
   }
 
   Future signOut({BuildContext context}) async {
-    nohistorychangescreen(context, splash());
+    // nohistorychangescreen(context, Intro_Screens());
     _auth.signOut();
 
     _status = Status.Unauthenticated;
@@ -956,7 +933,7 @@ class AuthProviderl with ChangeNotifier {
     Provider.of<UserServices>(context, listen: false).clear();
     Provider.of<AppProvider>(context, listen: false).clear();
     notifyListeners();
-    return Future.delayed(Duration.zero);
+    return "";
   }
 
   Future signInAnonymously(BuildContext context) async {
