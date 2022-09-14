@@ -21,6 +21,14 @@ class home extends StatefulWidget {
 class _homeState extends State<home> with TickerProviderStateMixin {
   AnimationController animationController;
   var random = Random();
+  Timer _timer;
+  @override
+  void dispose() {
+    _timer.cancel();
+
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -33,6 +41,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
           animationController.reverse();
         }
       });
+    _timer = Timer.periodic(Duration(seconds: 1), (Timer t) => setAnimation());
+
     // TODO: implement initState
     super.initState();
   }
@@ -43,7 +53,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    Timer.periodic(Duration(seconds: 1), (Timer t) => setAnimation());
+    // Timer.periodic(Duration(seconds: 1), (Timer t) => setAnimation());
     final uss = Provider.of<UserServices>(context);
     return Scaffold(
       backgroundColor: greetings(DateTime.now()) == "Good Night"
@@ -115,7 +125,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                     horizontal: 20,
                   ),
                   child: Text(
-                    '${uss.user.name}',
+                    '${uss.userr.name}',
                     style: TextStyle(
                       color: greetings(DateTime.now()) == "Good Night"
                           ? Colors.white

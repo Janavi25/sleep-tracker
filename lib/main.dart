@@ -8,17 +8,23 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sleep_tracker/Authentication/Onboarding/intro_screens.dart';
 import 'package:sleep_tracker/Authentication/login_signup.dart';
 import 'package:sleep_tracker/Authentication/splash/splash.dart';
+
 import 'package:sleep_tracker/Navigation/Navigation.dart';
 
+import 'BackgroundTask/BackgroundTask.dart';
 import 'controller/appprovider.dart';
 import 'controller/authcontroller.dart';
 import 'controller/constants.dart';
 import 'controller/user.dart';
 import 'home/home.dart';
 
+var bg_task;
+UserServices userServices;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  userServices = UserServices();
+  bg_task = BackgroundTask();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider.value(value: AuthProviderl.initialize()),
