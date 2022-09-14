@@ -8,7 +8,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -16,14 +16,50 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   introduction_screen:
+  overlay_support:
+  flutter_phoenix:
+  platform_device_id:
+
   responsive_sizer:
   animated_splash_screen:
   page_transition:
+  cloud_firestore:
+  provider:
+  firebase_analytics:
+  connectivity_plus:
+
+  fluttertoast:
   google_fonts:
   cached_network_image:
   shimmer:
   platform_date_picker: ^0.2.0-nullsafety.0+1
   intl:
+  get:
+  firebase_auth:
+  firebase_core:
+
+  google_sign_in:
+
+  flutter_launcher_icons:
+  progressive_time_picker:
+  dio:
+  shared_preferences:
+  path_provider:
+  firebase_storage:
+  permission_handler: ^9.0.2
+
+# dependency_overrides:
+#   firebase_messaging_platform_interface: 3.1.6
+#   firebase_crashlytics_platform_interface: 3.1.13
+#   cloud_firestore_platform_interface: 5.4.13
+#   firebase_auth_platform_interface: 6.1.11
+#   firebase_storage_platform_interface: 4.0.14
+#   cloud_functions_platform_interface: 5.0.21
+#   firebase_analytics_platform_interface: 3.0.5
+#   firebase_remote_config_platform_interface: 1.0.5
+#   firebase_dynamic_links_platform_interface: 0.2.0+5
+#   firebase_performance_platform_interface: 0.1.0+5
+#   firebase_app_installations_platform_interface: 0.1.0+6
 
 dev_dependencies:
   flutter_test:
@@ -64,3 +100,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon.png"

@@ -16,7 +16,10 @@ class _homeState extends State<home> {
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            //
+            Text(
+              "HOME",
+              style: TextStyle(color: Colors.white),
+            )
           ],
         ),
       ),

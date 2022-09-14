@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sleep_tracker/Intro_screens/create_profile.dart';
+import 'package:sleep_tracker/controller/authcontroller.dart';
+import 'package:sleep_tracker/controller/constants.dart';
 import 'package:sleep_tracker/helpers/screen_navigation.dart';
 import 'package:sleep_tracker/home/home.dart';
 
@@ -17,6 +20,7 @@ class login_signup extends StatefulWidget {
 class _login_signupState extends State<login_signup> {
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthProviderl>(context);
     return Scaffold(
       backgroundColor: const Color(0xff0A0C16),
       body: SingleChildScrollView(
@@ -122,7 +126,7 @@ class _login_signupState extends State<login_signup> {
                   ),
                   GestureDetector(
                     onTap: (() {
-                      changeScreen(context, create_profile());
+                      auth.signIn(context);
                     }),
                     child: Container(
                       height: 6.5.h,

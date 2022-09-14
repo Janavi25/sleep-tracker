@@ -1,19 +1,33 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sleep_tracker/Authentication/Onboarding/intro_screens.dart';
 import 'package:sleep_tracker/Authentication/login_signup.dart';
 import 'package:sleep_tracker/Authentication/splash/splash.dart';
 
+import 'controller/appprovider.dart';
+import 'controller/authcontroller.dart';
+import 'controller/constants.dart';
+import 'controller/user.dart';
 import 'home/home.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider.value(value: AuthProviderl.initialize()),
+      ChangeNotifierProvider.value(value: UserServices()),
+      ChangeNotifierProvider.value(value: AppProvider()),
+    ],
+    child: Phoenix(child: MyApp()),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  // const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
