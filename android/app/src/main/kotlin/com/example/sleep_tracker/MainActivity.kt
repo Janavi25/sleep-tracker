@@ -8,12 +8,23 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
+//import androidx.appcompat.app.AppCompatActivity
+//import android.os.Bundle
+//import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.work.*
+import androidx.work.impl.model.WorkTypeConverters.StateIds.ENQUEUED
+import java.util.concurrent.TimeUnit
+
 class MainActivity : FlutterActivity() {
 
         private val CHANNEL = "sleep_tracker/background_task"
         private var channel: MethodChannel? = null
+        val decibels : Double = 00.000
 
-        override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+
+    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
                 super.configureFlutterEngine(flutterEngine)
 
                 // creating a new MethodChannel
@@ -39,7 +50,37 @@ class MainActivity : FlutterActivity() {
 
 			// call this method to call the Dart Code
 			channel?.invokeMethod("background_task", result)
-		},0)
+
+
+            //#updated 12:27 -jaimit25
+//             val constraints = Constraints.Builder()
+//                 .setRequiresBatteryNotLow(true)
+//                 //.setRequiredNetworkType(NetworkType.CONNECTED)
+//                 .build()
+
+//             val data = Data.Builder()
+//                 .putDouble("db",00.00)
+//                 .build()
+
+//             val periodicWorkRequest = PeriodicWorkRequestBuilder<Work>(15, TimeUnit.MINUTES).setConstraints(constraints).setInputData(data).build()
+//             WorkManager.getInstance(this).enqueue(periodicWorkRequest)
+
+//             //To get the data from doWork which was executed every 15 Minutes
+//             WorkManager.getInstance()
+//                 .getWorkInfoByIdLiveData(periodicWorkRequest.id).observe(this, Observer { workInfo ->
+//                     val wasSuccess = if (workInfo != null && workInfo.state == WorkInfo.State.SUCCEEDED) {
+//                         workInfo.outputData.getDouble("outputData", 00.000)
+//                     } else {
+//                         00.0000
+//                     }
+// //                txtV.text = wasSuccess.toString()
+//                     Toast.makeText(this, "Work result : ${wasSuccess}", Toast.LENGTH_LONG).show()
+//                 })
+            //# END updated 12:27 -jaimit25
+			channel?.invokeMethod("background_task", result.toString())
+
+
+        },0)
 
 
 
