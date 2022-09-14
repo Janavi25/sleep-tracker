@@ -172,9 +172,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                         height: 2.h,
                       ),
                       Text(
-                        '${DateTime.now().hour}' +
-                            ':' +
-                            '${DateTime.now().minute}',
+                        DateFormat('kk:mm').format(DateTime.now()),
                         style: TextStyle(
                           color: greetings(DateTime.now()) == "Good Night"
                               ? Colors.white
@@ -183,6 +181,18 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                   : Colors.black,
                           fontSize: 35.sp,
                           fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        DateFormat('EEE, d MMM').format(DateTime.now()),
+                        style: TextStyle(
+                          color: greetings(DateTime.now()) == "Good Night"
+                              ? Colors.white
+                              : greetings(DateTime.now()) == "Good Evening"
+                                  ? Colors.black
+                                  : Colors.black,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       SizedBox(
