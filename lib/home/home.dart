@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -24,6 +25,7 @@ class home extends StatefulWidget {
 
 class _homeState extends State<home> with TickerProviderStateMixin {
   AnimationController animationController;
+
   var random = Random();
   bool snore = false;
   bool alarm = false;
@@ -60,6 +62,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: greetings(DateTime.now()) == "Good Night"
+            ? Brightness.light
+            : Brightness.dark,
+      ),
+    );
     // Timer.periodic(Duration(seconds: 1), (Timer t) => setAnimation());
     final uss = Provider.of<UserServices>(context);
     return Scaffold(
@@ -92,12 +102,47 @@ class _homeState extends State<home> with TickerProviderStateMixin {
               : SizedBox(
                   height: 100.h,
                   child: greetings(DateTime.now()) == "Good Evening"
-                      ? Image.asset(
-                          "assets/3.png",
-                          fit: BoxFit.cover,
+                      ? Container(
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            stops: [
+                              0.1,
+                              0.4,
+                              0.6,
+                              0.9,
+                            ],
+                            colors: [
+                              Colors.orange[50],
+                              Colors.orange[100],
+                              Colors.orange[200],
+                              Colors.orange[300],
+                            ],
+                          )),
+                          child: Image.asset(
+                            "assets/3.png",
+                            fit: BoxFit.cover,
+                          ),
                         )
                       : Container(
-                          color: Colors.blueGrey[50],
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            stops: [
+                              0.1,
+                              0.4,
+                              0.6,
+                              0.9,
+                            ],
+                            colors: [
+                              Colors.orange[50],
+                              Colors.orange[100],
+                              Colors.blueGrey[50],
+                              Colors.blueGrey[50],
+                            ],
+                          )),
                           child: Image.asset(
                             "assets/1.png",
                             fit: BoxFit.cover,

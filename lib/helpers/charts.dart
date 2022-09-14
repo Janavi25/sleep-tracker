@@ -1,5 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sleep_tracker/controller/constants.dart';
 
 class LineChartSample2 extends StatefulWidget {
@@ -20,45 +22,102 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+      ),
+    );
     print(now_1m_higherlimit);
-    return Stack(
-      children: <Widget>[
-        AspectRatio(
-          aspectRatio: 1.70,
-          child: Container(
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(18),
-                ),
-                color: Color(0xff232d37)),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  right: 18.0, left: 12.0, top: 24, bottom: 12),
-              child: LineChart(
-                showAvg ? avgData() : mainData(),
+    return Container(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 22,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.watch_later_outlined,
+                    size: 16.sp,
+                    color: Colors.blueGrey[50],
+                  ),
+                  SizedBox(
+                    width: 2.w,
+                  ),
+                  Text(
+                    'Sleep Hours Report',
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      color: Colors.blueGrey[50],
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
+                ],
               ),
             ),
-          ),
-        ),
-        SizedBox(
-          width: 60,
-          height: 34,
-          child: TextButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
-            child: Text(
-              'Sleep Hours',
-              style: TextStyle(
-                  fontSize: 8,
-                  color:
-                      showAvg ? Colors.white.withOpacity(0.5) : Colors.white),
+            SizedBox(
+              height: 2.h,
             ),
-          ),
+            Stack(
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: AspectRatio(
+                    aspectRatio: 1.50,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(18),
+                          ),
+                          color: Color(0xff232d37)),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            right: 18.0, left: 12.0, top: 40, bottom: 12),
+                        child: LineChart(
+                          showAvg ? avgData() : mainData(),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  margin: const EdgeInsets.only(
+                    left: 25,
+                    bottom: 20,
+                  ),
+                  width: 50.w,
+                  height: 34,
+                  child: TextButton(
+                    onPressed: () {
+                      setState(() {
+                        showAvg = !showAvg;
+                      });
+                    },
+                    child: Text(
+                      'Sleep Hours',
+                      style: TextStyle(
+                          fontSize: 14.sp,
+                          color: showAvg
+                              ? Colors.white.withOpacity(0.5)
+                              : Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
