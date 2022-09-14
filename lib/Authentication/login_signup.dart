@@ -165,9 +165,9 @@ class _login_signupState extends State<login_signup> {
                             'Continue with Google',
                             style: GoogleFonts.poppins(
                               textStyle: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 16.sp,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),

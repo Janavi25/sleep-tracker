@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:sleep_tracker/home/graphs.dart';
 import 'package:sleep_tracker/home/home.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
@@ -33,7 +34,7 @@ class _NavigationState extends State<Navigation> {
             child: home(),
           ),
           Center(
-            child: home(),
+            child: DataVisual(),
           ),
           Center(
             child: home(),

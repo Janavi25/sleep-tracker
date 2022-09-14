@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -26,6 +27,15 @@ class _homeState extends State<home> with TickerProviderStateMixin {
   var random = Random();
   bool snore = false;
   bool alarm = false;
+  bool moon = false;
+  Timer _timer;
+  @override
+  void dispose() {
+    _timer.cancel();
+
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -38,6 +48,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
           animationController.reverse();
         }
       });
+    _timer = Timer.periodic(Duration(seconds: 1), (Timer t) => setAnimation());
+
     // TODO: implement initState
     super.initState();
   }
@@ -48,7 +60,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    Timer.periodic(Duration(seconds: 1), (Timer t) => setAnimation());
+    // Timer.periodic(Duration(seconds: 1), (Timer t) => setAnimation());
     final uss = Provider.of<UserServices>(context);
     return Scaffold(
       backgroundColor: greetings(DateTime.now()) == "Good Night"
@@ -70,8 +82,8 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                         MediaQuery.of(context).size.height),
                     SizedBox(
                       height: 100.h,
-                      child: Image.asset(
-                        "assets/2.png",
+                      child: const Image(
+                        image: AssetImage('assets/2.png'),
                         fit: BoxFit.cover,
                       ),
                     )
@@ -97,7 +109,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 7.h,
+                  height: 8.h,
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(
@@ -112,13 +124,14 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                               ? Colors.black
                               : Colors.black,
                       fontSize: 22.sp,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,
+                    vertical: 2,
                   ),
                   child: Text(
                     '${uss.user.name}' + ' 👋',
@@ -129,6 +142,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                               ? Colors.black
                               : Colors.black,
                       fontSize: 20.sp,
+                      letterSpacing: 1,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -174,8 +188,17 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                       SizedBox(
                         height: 2.h,
                       ),
-                      GestureDetector(
-                        onTap: () {
+                      GlowButton(
+                        width: 50.w,
+                        height: 6.h,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(40),
+                        ),
+                        color: const Color(0xFF3CDAF7),
+                        glowColor: const Color.fromARGB(255, 42, 163, 184),
+                        spreadRadius: 0.1,
+                        splashColor: const Color(0xFF3CDAF7),
+                        onPressed: () {
                           showModalBottomSheet(
                               backgroundColor: const Color(0xff111422),
                               shape: RoundedRectangleBorder(
@@ -213,7 +236,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                       ),
                                       Container(
                                         padding: const EdgeInsets.symmetric(
-                                            horizontal: 42),
+                                            horizontal: 30),
                                         alignment: Alignment.topLeft,
                                         child: Text(
                                           'Before sleep guidelines',
@@ -231,7 +254,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            horizontal: 40),
+                                            horizontal: 30),
                                         child: Row(
                                           children: [
                                             Container(
@@ -261,6 +284,9 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                   child: Text(
                                                     'Place your device next to your bed',
                                                     textAlign: TextAlign.left,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 2,
                                                     style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 15.sp,
@@ -270,10 +296,16 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     ),
                                                   ),
                                                 ),
+                                                SizedBox(
+                                                  height: 0.5.h,
+                                                ),
                                                 Container(
                                                   width: 65.w,
                                                   child: Text(
                                                     'Place your phone next to your bed for accurate sleep tracking',
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 2,
                                                     style: TextStyle(
                                                       color: Colors.grey[300],
                                                       fontSize: 13.sp,
@@ -293,7 +325,7 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            horizontal: 38),
+                                            horizontal: 30),
                                         child: Row(
                                           children: [
                                             Container(
@@ -323,6 +355,9 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                   child: Text(
                                                     'Plug your phone in',
                                                     textAlign: TextAlign.left,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 2,
                                                     style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 15.sp,
@@ -332,10 +367,16 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                     ),
                                                   ),
                                                 ),
+                                                SizedBox(
+                                                  height: 0.5.h,
+                                                ),
                                                 Container(
                                                   width: 65.w,
                                                   child: Text(
                                                     'Battery level suggested is 60%',
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 2,
                                                     style: TextStyle(
                                                       color: Colors.grey[300],
                                                       fontSize: 13.sp,
@@ -347,6 +388,56 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                                                 )
                                               ],
                                             )
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 2.h,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 40),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  FontAwesomeIcons.moon,
+                                                  color: Colors.white,
+                                                  size: 18.sp,
+                                                ),
+                                                SizedBox(
+                                                  width: 4.w,
+                                                ),
+                                                Text(
+                                                  'Manual Sleep Tracking',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16.5.sp,
+                                                    letterSpacing: 1,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            FlutterSwitch(
+                                              width: 13.w,
+                                              height: 2.5.h,
+                                              toggleSize: 45.0,
+                                              value: moon,
+                                              borderRadius: 30.0,
+                                              padding: 0,
+                                              activeColor: Color.fromRGBO(
+                                                  51, 226, 255, 1),
+                                              inactiveColor: Colors.black38,
+                                              onToggle: (val) {
+                                                setState(() {
+                                                  moon = val;
+                                                });
+                                              },
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -529,18 +620,18 @@ class _homeState extends State<home> with TickerProviderStateMixin {
                         },
                         child: Center(
                           child: Container(
-                            height: 6.h,
-                            width: 55.w,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: const Color(0xFF3CDAF7),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Color(0xFF3CDAF7),
-                                    spreadRadius: 0.1,
-                                    blurRadius: 0.1,
-                                  )
-                                ]),
+                            // height: 6.h,
+                            // width: 55.w,
+                            // decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(50),
+                            //     color: const Color(0xFF3CDAF7),
+                            //     boxShadow: const [
+                            //       BoxShadow(
+                            //         color: Color(0xFF3CDAF7),
+                            //         spreadRadius: 0.1,
+                            //         blurRadius: 0.1,
+                            //       )
+                            //     ]),
                             child: Center(
                               child: Text(
                                 'Start Sleep',

@@ -37,12 +37,14 @@ dependencies:
   get:
   firebase_auth:
   firebase_core:
-
+  fl_chart:
+  noise_meter:
   google_sign_in:
 
   flutter_launcher_icons:
   progressive_time_picker:
   flutter_switch:
+  flutter_glow:
   dio:
   shared_preferences:
   path_provider:
