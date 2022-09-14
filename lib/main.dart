@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -38,8 +39,39 @@ class MyApp extends StatelessWidget {
         ),
         home: ResponsiveSizer(
           builder: (context, orientation, screenType) {
-            return splash();
+            return ScreensController();
           },
         ));
+  }
+}
+
+class ScreensController extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+    );
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    final auth = Provider.of<AuthProviderl>(context);
+    final _appProviderInst = Provider.of<AppProvider>(context);
+
+    print(auth.status);
+    switch (auth.status) {
+      case Status.Uninitialized:
+        return splash();
+      case Status.Unauthenticated:
+        return splash();
+      // case Status.Authenticating:
+      //   return AuthPage();
+      case Status.Authenticated:
+        return home();
+      default:
+        return splash();
+    }
   }
 }
