@@ -54,6 +54,8 @@ dependencies:
   water_drop_nav_bar:
   font_awesome_flutter:
 
+  workmanager:
+
 # dependency_overrides:
 #   firebase_messaging_platform_interface: 3.1.6
 #   firebase_crashlytics_platform_interface: 3.1.13
